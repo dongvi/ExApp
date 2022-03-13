@@ -14,30 +14,103 @@
 
         <LinearLayout
             android:id="@+id/menuBar"
-            android:background="#E8E8E8"
+            android:background="@color/bg_menuBar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/btn_home_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/home_icon"/>
+
+                <ImageView
+                    android:id="@+id/btn_home_off"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/home_icon2"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/btn_play_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/play_icon"/>
+
+                <ImageView
+                    android:id="@+id/btn_play_off"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/play_icon2"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/btn_news_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/news_icon"/>
+
+                <ImageView
+                    android:id="@+id/btn_news_off"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/news_icon2"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/btn_person_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/person_icon"/>
+
+                <ImageView
+                    android:id="@+id/btn_person_off"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/person_icon2"/>
+
+            </RelativeLayout>
+  
             <ImageView
                 android:id="@+id/btn_home"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:src="@drawable/home_icon"/>
 
             <ImageView
                 android:id="@+id/btn_play"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:src="@drawable/play_icon"/>
 
             <ImageView
                 android:id="@+id/btn_sms"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:src="@drawable/sms_icon"
                 android:paddingVertical="4dp"/>
 
@@ -45,7 +118,6 @@
                 android:id="@+id/btn_person"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:src="@drawable/person_icon"/>
 
         </LinearLayout>
