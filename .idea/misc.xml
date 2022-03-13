@@ -6,8 +6,11 @@
         <entry key="..\:/cty/ExApp/app/src/main/res/drawable/news_icon.xml" value="0.1555" />
         <entry key="..\:/cty/ExApp/app/src/main/res/drawable/news_icon2.xml" value="0.111" />
         <entry key="..\:/cty/ExApp/app/src/main/res/drawable/play_icon.xml" value="0.111" />
+<<<<<<< HEAD
         <entry key="..\:/cty/ExApp/app/src/main/res/drawable/sms_icon.xml" value="0.1555" />
         <entry key="..\:/cty/ExApp/app/src/main/res/layout/activity_main.xml" value="0.22" />
+=======
+>>>>>>> 785619981f085dc46a4c22691d032de81b4e63a3
       </map>
     </option>
   </component>
