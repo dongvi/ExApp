@@ -94,6 +94,31 @@
                     android:src="@drawable/person_icon2"/>
 
             </RelativeLayout>
+  
+            <ImageView
+                android:id="@+id/btn_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/home_icon"/>
+
+            <ImageView
+                android:id="@+id/btn_play"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/play_icon"/>
+
+            <ImageView
+                android:id="@+id/btn_sms"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/sms_icon"
+                android:paddingVertical="4dp"/>
+
+            <ImageView
+                android:id="@+id/btn_person"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/person_icon"/>
 
         </LinearLayout>
 
