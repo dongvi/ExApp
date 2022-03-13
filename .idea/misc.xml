@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/cty/ExApp/app/src/main/res/drawable/news_icon.xml" value="0.1555" />
+        <entry key="..\:/cty/ExApp/app/src/main/res/drawable/news_icon2.xml" value="0.111" />
+        <entry key="..\:/cty/ExApp/app/src/main/res/drawable/play_icon.xml" value="0.111" />
         <entry key="..\:/cty/ExApp/app/src/main/res/drawable/sms_icon.xml" value="0.1555" />
         <entry key="..\:/cty/ExApp/app/src/main/res/layout/activity_main.xml" value="0.22" />
       </map>
