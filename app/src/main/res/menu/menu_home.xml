@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/btn_a"
+        android:title="@string/btn_a"/>
+    <item
+        android:id="@+id/btn_b"
+        android:title="@string/btn_b"/>
+    <item
+        android:id="@+id/btn_c"
+        android:title="@string/btn_c"/>
+    <item
+        android:id="@+id/btn_d"
+        android:title="@string/btn_d"/>
+    <item
+        android:id="@+id/btn_e"
+        android:title="@string/btn_e"/>
+</menu>

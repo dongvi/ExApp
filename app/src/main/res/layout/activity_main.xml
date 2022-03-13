@@ -5,12 +5,11 @@
         android:layout_height="match_parent">
 
         <FrameLayout
+            android:background="@color/bg_frag"
             android:id="@+id/container_frag"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/menuBar">
-
-        </FrameLayout>
+            android:layout_above="@id/menuBar"/>
 
         <LinearLayout
             android:id="@+id/menuBar"
