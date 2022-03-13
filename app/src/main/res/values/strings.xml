@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">ExPrj</string>
+
+    --Home
+    <string name="title_home">Home</string>
+        --menu
+    <string name="btn_a">A</string>
+    <string name="btn_b">B</string>
+    <string name="btn_c">C</string>
+    <string name="btn_d">D</string>
+    <string name="btn_e">E</string>
+
+    --Game
+    <string name="title_game">Game</string>
+
+    --News
+    <string name="title_news">News</string>
+
+    --Person
+    <string name="title_person">Person</string>
+
+
 </resources>
