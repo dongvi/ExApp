@@ -3,6 +3,7 @@ package com.example.exprj;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
@@ -11,6 +12,10 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.exprj.databinding.ActivityMainBinding;
+import com.example.exprj.game.FragmentGame;
+import com.example.exprj.home.FragmentHome;
+import com.example.exprj.news.FragmentNews;
+import com.example.exprj.person.FragmentPerson;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,11 +32,20 @@ public class MainActivity extends AppCompatActivity {
 
         setBtnOn(1, binding);
 
+        //Cho màn hình Home chạy đầu tiên
+        FragmentHome fragmentHome = new FragmentHome();
+        turnOnFragment(fragmentHome.newInstance());
+
         // Thay đổi hiệu ứng menuBar khi thao tác
+        // Đồng thời gọi Fragment tương ứng khi thao tác với các btn
         binding.btnHomeOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setBtnOn(1, binding);
+
+                // khởi tạo Fragment Home
+                FragmentHome fragmentHome = new FragmentHome();
+                turnOnFragment(fragmentHome.newInstance());
             }
         });
 
@@ -39,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setBtnOn(2, binding);
+
+                // khởi tạo Fragment Game
+                FragmentGame fragmentGame = new FragmentGame();
+                turnOnFragment(fragmentGame.newInstance());
             }
         });
 
@@ -46,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setBtnOn(3, binding);
+
+                // khởi tạo Fragment News
+                FragmentNews fragmentNews = new FragmentNews();
+                turnOnFragment(fragmentNews.newInstance());
             }
         });
 
@@ -53,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setBtnOn(4, binding);
+
+                // khởi tạo Fragment person
+                FragmentPerson fragmentPerson = new FragmentPerson();
+                turnOnFragment(fragmentPerson.newInstance());
             }
         });
     }
@@ -77,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         // Đưa trạng thái menuBar về off
         setOffAllBtnMenu(binding);
 
-        // set trạng thái nút Home và lấy Home làm màn hình đầu khi bật app theo view số truyền vào
+        // set trạng thái và màn hình theo view số truyền vào
         // view 1: Home
         if(view == 1) {
             binding.btnHomeOn.setVisibility(View.VISIBLE);
@@ -98,5 +124,10 @@ public class MainActivity extends AppCompatActivity {
             binding.btnPersonOn.setVisibility(View.VISIBLE);
             binding.btnPersonOff.setVisibility(View.GONE);
         }
+    }
+
+    //Khởi động fragment
+    void turnOnFragment(Fragment fragment){
+        getSupportFragmentManager().beginTransaction().replace(R.id.container_frag, fragment).commit();
     }
 }
