@@ -12,11 +12,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.exprj.AdapterItem;
 import com.example.exprj.R;
 import com.example.exprj.databinding.FragmentNewsBinding;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.exprj.home.FragmentHome.items;
 
 public class FragmentNews extends Fragment {
     FragmentNewsBinding binding;
@@ -42,6 +45,10 @@ public class FragmentNews extends Fragment {
         // Recycler 1: daily News
         binding.rclNews1.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         binding.rclNews1.setAdapter(new AdapterNews(news));
+
+        // Recycler 2: Maybe you know
+        binding.rclNews2.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+        binding.rclNews2.setAdapter(new AdapterItem(items, R.layout.item_rcl_ngang));
 
         return binding.getRoot();
     }
