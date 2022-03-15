@@ -35,7 +35,7 @@ import retrofit2.Response;
 public class FragmentHome extends Fragment {
     FragmentHomeBinding binding;
     public static List<Banner> banners;
-    static List<String> items;
+    public static List<String> items;
 
     public static FragmentHome newInstance() {
         

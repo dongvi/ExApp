@@ -1,6 +1,7 @@
 package com.example.exprj.game;
 
 import static com.example.exprj.home.FragmentHome.banners;
+import static com.example.exprj.home.FragmentHome.items;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.exprj.AdapterItem;
@@ -86,6 +89,10 @@ public class FragmentGame extends Fragment {
 
             }
         });
+
+        // RecyclerView 2
+        binding.rclGame.setLayoutManager(new GridLayoutManager(getContext(), 3, RecyclerView.VERTICAL, false));
+        binding.rclGame.setAdapter(new AdapterItem(items, R.layout.item_rcl_doc));
 
 
         return binding.getRoot();
