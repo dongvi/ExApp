@@ -9,6 +9,9 @@
     <string name="btn_c">C</string>
     <string name="btn_d">D</string>
     <string name="btn_e">E</string>
+        --/
+    <string name="title_h1">List Item 1</string>
+    <string name="title_h2">List Item 2</string>
 
     --Game
     <string name="title_game">Game</string>
