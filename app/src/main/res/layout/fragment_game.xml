@@ -35,16 +35,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/vpg_game"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+            android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            tools:listitem="@layout/item_rcl_doc"
-            android:id="@+id/rcl_game"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/vpg_game"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_below="@id/vpg_game"
+                    android:nestedScrollingEnabled="false"
+                    tools:listitem="@layout/item_rcl_doc"
+                    android:id="@+id/rcl_game"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </RelativeLayout>
+
+
+        </ScrollView>
 
     </LinearLayout>
 </layout>
