@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,6 +45,9 @@ public class FragmentPerson extends Fragment {
         // recyclerView 2
         binding.rclPs2.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         binding.rclPs2.setAdapter(new AdapterItem(items, R.layout.item_rcl_doc));
+
+        // set animation for imageView
+        binding.imgPs.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.flicker));
 
         return binding.getRoot();
     }
