@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.exprj.AdapterItem;
@@ -39,7 +40,9 @@ public class FragmentPerson extends Fragment {
         binding.rclPs1.setLayoutManager(new GridLayoutManager(getContext(), 2, RecyclerView.HORIZONTAL, false));
         binding.rclPs1.setAdapter(new AdapterItem(items, R.layout.item_rcl_ngang));
 
-
+        // recyclerView 2
+        binding.rclPs2.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        binding.rclPs2.setAdapter(new AdapterItem(items, R.layout.item_rcl_doc));
 
         return binding.getRoot();
     }
