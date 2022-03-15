@@ -9,9 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.exprj.AdapterItem;
 import com.example.exprj.R;
 import com.example.exprj.databinding.FragmentPersonBinding;
+
+import static com.example.exprj.home.FragmentHome.items;
 
 public class FragmentPerson extends Fragment {
     FragmentPersonBinding binding;
@@ -29,6 +34,12 @@ public class FragmentPerson extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_person ,container , false);
+
+        // recyclerView 1
+        binding.rclPs1.setLayoutManager(new GridLayoutManager(getContext(), 2, RecyclerView.HORIZONTAL, false));
+        binding.rclPs1.setAdapter(new AdapterItem(items, R.layout.item_rcl_ngang));
+
+
 
         return binding.getRoot();
     }
