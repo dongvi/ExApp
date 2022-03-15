@@ -34,5 +34,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+        <androidx.viewpager.widget.ViewPager
+            android:onAnimationRepeat=""
+            android:id="@+id/vpg_game"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+
     </LinearLayout>
 </layout>
