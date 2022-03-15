@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -41,13 +41,13 @@
                 android:layout_height="match_parent">
 
                 <ViewFlipper
-                    android:flipInterval="3000"
-                    android:autoStart="true"
+                    android:id="@+id/container_banners"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:id="@+id/container_banners"
+                    android:autoStart="true"
+                    android:flipInterval="3000"
                     android:inAnimation="@android:anim/slide_in_left"
-                    android:outAnimation="@android:anim/slide_out_right"/>
+                    android:outAnimation="@android:anim/slide_out_right" />
 
                 <TextView
                     android:id="@+id/tv_rcl1"
