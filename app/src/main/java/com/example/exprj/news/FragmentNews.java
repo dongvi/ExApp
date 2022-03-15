@@ -1,6 +1,7 @@
 package com.example.exprj.news;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,19 +12,40 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.exprj.AdapterItem;
 import com.example.exprj.R;
 import com.example.exprj.databinding.FragmentNewsBinding;
+import com.example.exprj.game.AdapterPager;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.exprj.home.FragmentHome.banners;
 import static com.example.exprj.home.FragmentHome.items;
 
 public class FragmentNews extends Fragment {
     FragmentNewsBinding binding;
     List<News> news;
+
+    //auto viewpager
+    private Handler handler;
+    private int timeDelay = 3000;
+    private int page = 0;
+    AdapterCarousel adapterCarousel;
+
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            if(adapterCarousel.getCount() == page)
+                page = 0;
+            else
+                page++;
+            binding.crsNews.setCurrentItem(page);
+            handler.postDelayed(this, timeDelay);
+        }
+    };
 
     public static FragmentNews newInstance() {
         
@@ -50,7 +72,45 @@ public class FragmentNews extends Fragment {
         binding.rclNews2.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         binding.rclNews2.setAdapter(new AdapterItem(items, R.layout.item_rcl_ngang));
 
+        // carousel
+        handler = new Handler();
+        adapterCarousel = new AdapterCarousel(getContext(), banners);
+        binding.crsNews.setAdapter(adapterCarousel);
+        binding.crsNews.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                page = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        binding.idcNews.setViewPager(binding.crsNews);
+        adapterCarousel.registerDataSetObserver(binding.idcNews.getDataSetObserver());
+
+
+
         return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        handler.postDelayed(runnable, timeDelay);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        handler.removeCallbacks(runnable);
     }
 
     void addData(){
