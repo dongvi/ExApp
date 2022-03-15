@@ -48,5 +48,23 @@
             android:layout_width="match_parent"
             android:layout_height="400dp"/>
 
+        <TextView
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            android:layout_marginHorizontal="5dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="@string/title_news_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcl_news_2"
+            tools:listitem="@layout/item_rcl_ngang"
+            android:layout_margin="5dp"
+            android:background="@drawable/bg_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 </layout>
