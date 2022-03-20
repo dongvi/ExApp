@@ -1,17 +1,12 @@
-package com.example.exprj.header;
+package com.example.exprj.custom_view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.accessibility.AccessibilityEvent;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
 
 import com.example.exprj.R;
 
@@ -43,18 +38,30 @@ public class HeaderMenu1 extends RelativeLayout {
             if(labelTitle.equals("1")) {
                 title.setText(getResources().getString(R.string.title_game));
                 item2.setVisibility(GONE);
+                item1.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getContext(), "item 1", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
             else if(labelTitle.equals("2")) {
                 title.setText(getResources().getString(R.string.title_news));
+                item1.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getContext(), "item 3", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
 
             // set event cho các nút chức năng ...
-            item1.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getContext(), "item 1", Toast.LENGTH_LONG).show();
-                }
-            });
+//            item1.setOnClickListener(new OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Toast.makeText(getContext(), "item 1", Toast.LENGTH_LONG).show();
+//                }
+//            });
 
             item2.setOnClickListener(new OnClickListener() {
                 @Override

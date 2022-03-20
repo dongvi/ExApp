@@ -3,13 +3,11 @@ package com.example.exprj.game;
 import static com.example.exprj.home.FragmentHome.banners;
 import static com.example.exprj.home.FragmentHome.items;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.translation.ViewTranslationCallback;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,7 +21,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.exprj.AdapterItem;
 import com.example.exprj.R;
 import com.example.exprj.databinding.FragmentGameBinding;
-import com.example.exprj.header.HeaderMenu1;
 
 import java.util.ArrayList;
 import java.util.List;

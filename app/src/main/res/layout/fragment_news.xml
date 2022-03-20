@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.example.exprj.header.HeaderMenu1
+        <com.example.exprj.custom_view.HeaderMenu1
             android:text="2"
             android:id="@+id/header_meun_news"
             android:layout_width="match_parent"

@@ -5,17 +5,22 @@
       <map>
         <entry key="..\:/cty/ExApp/app/src/main/res/drawable/bg_list.xml" value="0.111" />
         <entry key="..\:/cty/ExApp/app/src/main/res/drawable/bg_menu_game.xml" value="0.111" />
+        <entry key="..\:/cty/ExApp/app/src/main/res/drawable/home_icon.xml" value="0.111" />
+        <entry key="..\:/cty/ExApp/app/src/main/res/drawable/home_icon2.xml" value="0.111" />
         <entry key="..\:/cty/ExApp/app/src/main/res/drawable/news_icon.xml" value="0.1555" />
         <entry key="..\:/cty/ExApp/app/src/main/res/drawable/news_icon2.xml" value="0.111" />
         <entry key="..\:/cty/ExApp/app/src/main/res/drawable/play_icon.xml" value="0.111" />
         <entry key="..\:/cty/ExApp/app/src/main/res/drawable/red_radius.xml" value="0.1" />
         <entry key="..\:/cty/ExApp/app/src/main/res/drawable/sms_icon.xml" value="0.1555" />
         <entry key="..\:/cty/ExApp/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/cty/ExApp/app/src/main/res/layout/bottom_menu.xml" value="0.25" />
+        <entry key="..\:/cty/ExApp/app/src/main/res/layout/component_bottom_menu.xml" value="0.209375" />
         <entry key="..\:/cty/ExApp/app/src/main/res/layout/fragment_game.xml" value="0.25" />
         <entry key="..\:/cty/ExApp/app/src/main/res/layout/fragment_home.xml" value="0.22879908935685828" />
         <entry key="..\:/cty/ExApp/app/src/main/res/layout/fragment_news.xml" value="0.2" />
         <entry key="..\:/cty/ExApp/app/src/main/res/layout/fragment_person.xml" value="0.209375" />
         <entry key="..\:/cty/ExApp/app/src/main/res/layout/header_menu_1.xml" value="0.209375" />
+        <entry key="..\:/cty/ExApp/app/src/main/res/layout/item_bottom_menu.xml" value="0.22" />
         <entry key="..\:/cty/ExApp/app/src/main/res/layout/item_carousel_news.xml" value="0.209375" />
         <entry key="..\:/cty/ExApp/app/src/main/res/layout/item_menu_game.xml" value="0.5" />
         <entry key="..\:/cty/ExApp/app/src/main/res/layout/item_news.xml" value="0.25" />
