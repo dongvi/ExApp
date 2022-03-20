@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/bg_menuBar"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:orientation="horizontal">
+
+    <com.example.exprj.custom_view.ItemBottomMenu
+        android:id="@+id/btn_home"
+        srcOn = "@drawable/home_icon"
+        srcOff = "@drawable/home_icon2"
+        text = "Home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <com.example.exprj.custom_view.ItemBottomMenu
+        android:id="@+id/btn_game"
+        srcOn = "@drawable/play_icon"
+        srcOff = "@drawable/play_icon2"
+        text = "Game"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <com.example.exprj.custom_view.ItemBottomMenu
+        android:id="@+id/btn_news"
+        srcOn = "@drawable/news_icon"
+        srcOff = "@drawable/news_icon2"
+        text = "News"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <com.example.exprj.custom_view.ItemBottomMenu
+        android:id="@+id/btn_person"
+        srcOn = "@drawable/person_icon"
+        srcOff = "@drawable/person_icon2"
+        text = "Person"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+</LinearLayout>
