@@ -6,29 +6,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:background="@color/bg_actionbar"
+        <com.example.exprj.header.HeaderMenu1
+            android:text="1"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_centerVertical="true"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="25dp"
-                android:text="@string/title_game"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <ImageView
-                android:layout_alignParentRight="true"
-                android:src="@drawable/search_icon"
-                android:id="@+id/btn_search"
-                android:layout_width="35dp"
-                android:layout_height="match_parent"/>
-
-        </RelativeLayout>
+            android:layout_height="wrap_content"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcl_menu_game"
