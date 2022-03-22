@@ -36,6 +36,7 @@ public class FragmentHome extends Fragment {
     FragmentHomeBinding binding;
     public static List<Banner> banners;
     public static List<String> items;
+    ImageView view;
 
     public static FragmentHome newInstance() {
         
@@ -59,8 +60,18 @@ public class FragmentHome extends Fragment {
         });
 
         banners = new ArrayList<>();
+        banners.add(new Banner("https://www.google.com/url?sa=i&url=https%3A%2F%2Fbranding360.vn%2F2020%2F08%2F10%2Fthu-loi-nhuan-kinh-ngac-tu-viec-su-dung-banner-quang-cao-branding360%2F&psig=AOvVaw0sjr1b_HCfgxnvvHS6f_j0&ust=1648006757943000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLDRxN3l2PYCFQAAAAAdAAAAABAD"));
+        banners.add(new Banner("https://www.google.com/url?sa=i&url=https%3A%2F%2Fyouthvietnam.vn%2Fthiet-ke-banner%2F&psig=AOvVaw0sjr1b_HCfgxnvvHS6f_j0&ust=1648006757943000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLDRxN3l2PYCFQAAAAAdAAAAABAJ"));
+        banners.add(new Banner("https://www.google.com/url?sa=i&url=https%3A%2F%2Fbizfly.vn%2Ftechblog%2Fbanner-la-gi.html&psig=AOvVaw0sjr1b_HCfgxnvvHS6f_j0&ust=1648006757943000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLDRxN3l2PYCFQAAAAAdAAAAABAO"));
+
+        // init ImageView
+        view = new ImageView(getContext());
+        view.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        setFlipper();
+
         //Lấy ảnh từ mạng
-        getAPI();
+//        getAPI();
 
         //Set dữ liệu cứng cho list Items
         items = new ArrayList<>();
@@ -78,27 +89,33 @@ public class FragmentHome extends Fragment {
         return binding.getRoot();
     }
 
-    public void getAPI(){
-        Call<List<Banner>> callBanner = APIClient.create().onGetBanners();
-        callBanner.enqueue(new Callback<List<Banner>>() {
-            @Override
-            public void onResponse(Call<List<Banner>> call, Response<List<Banner>> response) {
-                banners = response.body();
-
-                for(Banner i : banners){
-                    ImageView view = new ImageView(getContext());
-                    view.setScaleType(ImageView.ScaleType.FIT_XY);
-                    Picasso.get().load(i.getImg()).into(view);
-                    binding.containerBanners.addView(view);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Banner>> call, Throwable t) {
-                Toast.makeText(getContext(), t.toString(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
+//    public void getAPI(){
+//        Call<List<Banner>> callBanner = APIClient.create().onGetBanners();
+//        callBanner.enqueue(new Callback<List<Banner>>() {
+//            @Override
+//            public void onResponse(Call<List<Banner>> call, Response<List<Banner>> response) {
+//                banners = response.body();
+//
+//                for(Banner i : banners){
+//                    // call removeView() on the child's parent first
+//                    if(view.getParent() != null){
+//                        ((ViewGroup) view.getParent()).removeView(view);
+//                    }
+//
+//                    // load image from a link
+//                    Picasso.get().load(i.getImg()).into(view);
+//
+//                    // add view for ViewFlipper
+//                    binding.containerBanners.addView(view);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Banner>> call, Throwable t) {
+//                Toast.makeText(getContext(), t.toString(), Toast.LENGTH_LONG).show();
+//            }
+//        });
+//    }
 
     // Xây dựng menu nhỏ cho home
     void menuHome(FragmentHomeBinding binding){
@@ -111,6 +128,21 @@ public class FragmentHome extends Fragment {
         //
 
         popupMenu.show();
+    }
+
+    void setFlipper(){
+        for(Banner i : banners){
+            // call removeView() on the child's parent first
+            if(view.getParent() != null){
+                ((ViewGroup) view.getParent()).removeView(view);
+            }
+
+            // load image from a link
+            Picasso.get().load(i.getImg()).into(view);
+
+            // add view for ViewFlipper
+            binding.containerBanners.addView(view);
+        }
     }
 
     void addData(){

@@ -9,32 +9,24 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
-import com.example.exprj.MainActivity;
 import com.example.exprj.R;
-import com.example.exprj.game.FragmentGame;
-import com.example.exprj.home.FragmentHome;
-import com.example.exprj.news.FragmentNews;
-import com.example.exprj.person.FragmentPerson;
 
-public class BottomMenu extends LinearLayout {
-
-    static ItemBottomMenu home;
-    static ItemBottomMenu game;
-    static ItemBottomMenu news;
-    static ItemBottomMenu person;
-
-    FragmentHome fragmentHome;
-
-
+public class BottomMenu extends LinearLayout implements View.OnClickListener {
+    ItemBottomMenu home;
+    ItemBottomMenu game;
+    ItemBottomMenu news;
+    ItemBottomMenu person;
+    IClick click;
 
     public BottomMenu(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-
+        // Prepare to read the bottom_menu.xml file
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if(layoutInflater != null) {
             layoutInflater.inflate(R.layout.bottom_menu, this);
 
+            // read buttons from bottom_menu.xml file
             home = findViewById(R.id.btn_home);
             game = findViewById(R.id.btn_game);
             news = findViewById(R.id.btn_news);
@@ -44,37 +36,43 @@ public class BottomMenu extends LinearLayout {
             turnOn(home);
 
             //set event for buttons
-            home.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    turnOn(home);
-                    MainActivity.turnOnFragment(FragmentHome.newInstance());
-                }
-            });
+//            home.setOnClickListener(new OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    turnOn(home);
+//                    click.btnTag(1);
+//                }
+//            });
+//
+//            game.setOnClickListener(new OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    turnOn(game);
+//                    click.btnTag(2);
+//                }
+//            });
+//
+//            news.setOnClickListener(new OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    turnOn(news);
+//                    click.btnTag(3);
+//                }
+//            });
+//
+//            person.setOnClickListener(new OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    turnOn(person);
+//                    click.btnTag(4);
+//                }
+//            });
 
-            game.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    turnOn(game);
-                    MainActivity.turnOnFragment(FragmentGame.newInstance());
-                }
-            });
-
-            news.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    turnOn(news);
-                    MainActivity.turnOnFragment(FragmentNews.newInstance());
-                }
-            });
-
-            person.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    turnOn(person);
-                    MainActivity.turnOnFragment(FragmentPerson.newInstance());
-                }
-            });
+            // setOnclicklistenner
+            home.setOnClickListener(this);
+            game.setOnClickListener(this);
+            news.setOnClickListener(this);
+            person.setOnClickListener(this);
         }
     }
 
@@ -89,5 +87,33 @@ public class BottomMenu extends LinearLayout {
     void turnOn(ItemBottomMenu x){
         turnOffAll();
         x.sttOn();
+    }
+
+    public void setClick(IClick click) {
+        this.click = click;
+    }
+
+    // Set events for bottom menu
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btn_home:
+                turnOn(home);
+                click.btnTag(1);
+                break;
+            case R.id.btn_game:
+                turnOn(game);
+                click.btnTag(2);
+                break;
+            case R.id.btn_news:
+                turnOn(news);
+                click.btnTag(3);
+                break;
+            case R.id.btn_person:
+                turnOn(person);
+                click.btnTag(4);
+                break;
+            default: break;
+        }
     }
 }

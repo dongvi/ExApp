@@ -11,4 +11,8 @@ public class Banner {
     public String getImg() {
         return img;
     }
+
+    public Banner(String img) {
+        this.img = img;
+    }
 }

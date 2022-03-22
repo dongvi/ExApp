@@ -5,17 +5,17 @@
         android:layout_height="match_parent">
 
         <FrameLayout
-            android:background="@color/bg_frag"
             android:id="@+id/container_frag"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/menuBar"/>
+            android:layout_above="@id/menuBar"
+            android:background="@color/bg_frag"/>
 
         <com.example.exprj.custom_view.BottomMenu
-            android:layout_alignParentBottom="true"
             android:id="@+id/menuBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 </layout>
