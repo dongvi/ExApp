@@ -7,15 +7,21 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.exprj.custom_view.BottomMenu;
+import com.example.exprj.custom_view.BottomMenuListenner;
 import com.example.exprj.databinding.ActivityMainBinding;
+import com.example.exprj.game.FragmentGame;
 import com.example.exprj.home.FragmentHome;
+import com.example.exprj.news.FragmentNews;
+import com.example.exprj.person.FragmentPerson;
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
     static FragmentManager fragmentManager;
+    BottomMenu bottomMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +30,42 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
+        // set binding
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+        // FragmentManager get support
         fragmentManager = getSupportFragmentManager();
-        turnOnFragment(FragmentHome.newInstance());
+
+        // init fragments
+        FragmentHome fragmentHome = new FragmentHome();
+        FragmentGame fragmentGame = new FragmentGame();
+        FragmentNews fragmentNews = new FragmentNews();
+        FragmentPerson fragmentPerson = new FragmentPerson();
+
+        // turn on fragment home first
+        turnOnFragment(fragmentHome);
+
+        // call bottom menu in activity_main.xml
+        bottomMenu = binding.menuBar;
+
+        // catch events bottom menu
+        bottomMenu.setBottomMenuListenner(new BottomMenuListenner() {
+            @Override
+            public void onItemClick(int position) {
+                switch (position){
+                    case 0:
+                        turnOnFragment(fragmentHome); break;
+                    case 1:
+                        turnOnFragment(fragmentGame); break;
+                    case 2:
+                        turnOnFragment(fragmentNews); break;
+                    case 3:
+                        turnOnFragment(fragmentPerson); break;
+                    default: break;
+                }
+            }
+        });
+
     }
 
 
