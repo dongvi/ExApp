@@ -9,7 +9,8 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 
 import com.example.exprj.custom_view.BottomMenu;
-import com.example.exprj.custom_view.IClick;
+import com.example.exprj.custom_view.BottomMenuImpl;
+import com.example.exprj.custom_view.ItemBottomMenu;
 import com.example.exprj.databinding.ActivityMainBinding;
 import com.example.exprj.game.FragmentGame;
 import com.example.exprj.home.FragmentHome;
@@ -48,14 +49,14 @@ public class MainActivity extends AppCompatActivity {
         bottomMenu = binding.menuBar;
 
         // catch events bottom menu
-        bottomMenu.setClick(new IClick() {
+        bottomMenu.setBottomMenuImpl(new BottomMenuImpl() {
             @Override
-            public void btnTag(int tag) {
-                switch (tag){
-                    case 1: turnOnFragment(fragmentHome); break;
-                    case 2: turnOnFragment(fragmentGame); break;
-                    case 3: turnOnFragment(fragmentNews); break;
-                    case 4: turnOnFragment(fragmentPerson); break;
+            public void getPosition(int position) {
+                switch (position){
+                    case 0: turnOnFragment(fragmentHome); break;
+                    case 1: turnOnFragment(fragmentGame); break;
+                    case 2: turnOnFragment(fragmentNews); break;
+                    case 3: turnOnFragment(fragmentPerson); break;
                     default: break;
                 }
             }

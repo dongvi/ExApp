@@ -11,68 +11,42 @@ import androidx.annotation.Nullable;
 
 import com.example.exprj.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BottomMenu extends LinearLayout implements View.OnClickListener {
     ItemBottomMenu home;
     ItemBottomMenu game;
     ItemBottomMenu news;
     ItemBottomMenu person;
-    IClick click;
+    BottomMenuImpl bottomMenuImpl;
+    List<ItemBottomMenu> listButton;
 
     public BottomMenu(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+
+        listButton = new ArrayList<>();
+
         // Prepare to read the bottom_menu.xml file
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if(layoutInflater != null) {
             layoutInflater.inflate(R.layout.bottom_menu, this);
 
-            // read buttons from bottom_menu.xml file
+            // call buttons in bottom_menu.xml
             home = findViewById(R.id.btn_home);
             game = findViewById(R.id.btn_game);
             news = findViewById(R.id.btn_news);
             person = findViewById(R.id.btn_person);
 
-            // first run
+            // add buttons to listButton
+            addButton(home);
+            addButton(game);
+            addButton(news);
+            addButton(person);
+
+            // turn on button home first
             turnOn(home);
-
-            //set event for buttons
-//            home.setOnClickListener(new OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    turnOn(home);
-//                    click.btnTag(1);
-//                }
-//            });
-//
-//            game.setOnClickListener(new OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    turnOn(game);
-//                    click.btnTag(2);
-//                }
-//            });
-//
-//            news.setOnClickListener(new OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    turnOn(news);
-//                    click.btnTag(3);
-//                }
-//            });
-//
-//            person.setOnClickListener(new OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    turnOn(person);
-//                    click.btnTag(4);
-//                }
-//            });
-
-            // setOnclicklistenner
-            home.setOnClickListener(this);
-            game.setOnClickListener(this);
-            news.setOnClickListener(this);
-            person.setOnClickListener(this);
         }
     }
 
@@ -84,36 +58,26 @@ public class BottomMenu extends LinearLayout implements View.OnClickListener {
         person.sttOff();
     }
     // set trạng thái on cho 1 nút truyền vào
-    void turnOn(ItemBottomMenu x){
+    void turnOn(ItemBottomMenu buttonName){
         turnOffAll();
-        x.sttOn();
+        buttonName.sttOn();
     }
 
-    public void setClick(IClick click) {
-        this.click = click;
+    public void setBottomMenuImpl(BottomMenuImpl bottomMenuImpl) {
+        this.bottomMenuImpl = bottomMenuImpl;
     }
 
     // Set events for bottom menu
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btn_home:
-                turnOn(home);
-                click.btnTag(1);
-                break;
-            case R.id.btn_game:
-                turnOn(game);
-                click.btnTag(2);
-                break;
-            case R.id.btn_news:
-                turnOn(news);
-                click.btnTag(3);
-                break;
-            case R.id.btn_person:
-                turnOn(person);
-                click.btnTag(4);
-                break;
-            default: break;
-        }
+        ItemBottomMenu button = findViewById(view.getId());
+        turnOn(button);
+        bottomMenuImpl.getPosition(listButton.indexOf(button));
+    }
+
+    // definition of a button
+    void addButton(ItemBottomMenu buttonName) {
+        buttonName.setOnClickListener(this);
+        listButton.add(buttonName);
     }
 }

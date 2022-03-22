@@ -1,5 +1,5 @@
 package com.example.exprj.custom_view;
 
-public interface IClick {
-    void btnTag(int tag);
+public interface BottomMenuImpl {
+    void getPosition(int position);
 }
