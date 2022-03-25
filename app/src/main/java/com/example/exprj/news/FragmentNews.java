@@ -2,6 +2,7 @@ package com.example.exprj.news;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.exprj.AdapterItem;
+import com.example.exprj.MainActivity;
 import com.example.exprj.R;
 import com.example.exprj.databinding.FragmentNewsBinding;
 import com.example.exprj.game.AdapterPager;
+import com.example.exprj.game.FragmentGame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +29,10 @@ import static com.example.exprj.home.FragmentHome.banners;
 import static com.example.exprj.home.FragmentHome.items;
 
 public class FragmentNews extends Fragment {
+    public static final String TAG = FragmentNews.class.getName();
     FragmentNewsBinding binding;
     List<News> news;
+    MainActivity mainActivity;
 
     //auto viewpager
     private Handler handler;
@@ -38,7 +43,7 @@ public class FragmentNews extends Fragment {
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            if(adapterCarousel.getCount() == page)
+            if (adapterCarousel.getCount() == page)
                 page = 0;
             else
                 page++;
@@ -47,19 +52,10 @@ public class FragmentNews extends Fragment {
         }
     };
 
-    public static FragmentNews newInstance() {
-        
-        Bundle args = new Bundle();
-        
-        FragmentNews fragment = new FragmentNews();
-        fragment.setArguments(args);
-        return fragment;
-    }
-    
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_news ,container , false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_news, container, false);
 
         news = new ArrayList<>();
         addData();
@@ -96,7 +92,7 @@ public class FragmentNews extends Fragment {
         binding.idcNews.setViewPager(binding.crsNews);
         adapterCarousel.registerDataSetObserver(binding.idcNews.getDataSetObserver());
 
-
+        mainActivity = (MainActivity) getActivity();
 
         return binding.getRoot();
     }
@@ -113,7 +109,7 @@ public class FragmentNews extends Fragment {
         handler.removeCallbacks(runnable);
     }
 
-    void addData(){
+    void addData() {
         news.add(new News("Yo!!!", "11-12-2021"));
         news.add(new News("If you love someone.", "15-12-2021"));
         news.add(new News("You're going to", "16-12-2021"));
@@ -121,5 +117,13 @@ public class FragmentNews extends Fragment {
         news.add(new News("Sometime.", "18-12-2021"));
         news.add(new News("Somehow.", "19-12-2021"));
         news.add(new News("Do u think so???", "20-12-2021"));
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            mainActivity.onFragmentSelected(2, TAG);
+        }
     }
 }

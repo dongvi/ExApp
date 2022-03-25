@@ -28,6 +28,8 @@ public class BottomMenu extends LinearLayout {
             for (int i = 0; i < root.getChildCount(); i++) {
                 ItemBottomMenu button = (ItemBottomMenu) root.getChildAt(i);
                 int finalI = i;
+
+                // click on item
                 button.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -43,19 +45,19 @@ public class BottomMenu extends LinearLayout {
     }
 
     // set status off for all buttons
-    void turnOfAll(){
+    public void turnOfAll(){
         for (int i = 0; i < root.getChildCount(); i++)
             ((ItemBottomMenu) root.getChildAt(i)).sttOff();
     }
 
     // turn on button
-    void turnOn(ItemBottomMenu button){
+    public void turnOn(ItemBottomMenu button){
         turnOfAll();
         button.sttOn();
     }
 
-
     public void setBottomMenuListenner(BottomMenuListenner bottomMenuListenner) {
         this.bottomMenuListenner = bottomMenuListenner;
     }
+
 }

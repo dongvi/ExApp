@@ -1,10 +1,23 @@
 package com.example.exprj.home;
 
+import android.animation.Animator;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentSender;
+import android.content.res.Configuration;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -13,18 +26,31 @@ import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.SharedElementCallback;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStore;
+import androidx.loader.app.LoaderManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.exprj.AdapterItem;
+import com.example.exprj.MainActivity;
 import com.example.exprj.R;
 import com.example.exprj.api.APIClient;
+import com.example.exprj.custom_view.BottomMenuListenner;
 import com.example.exprj.databinding.FragmentHomeBinding;
+import com.example.exprj.game.FragmentGame;
 import com.squareup.picasso.Picasso;
 
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,19 +59,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FragmentHome extends Fragment {
+    public static final String TAG = FragmentHome.class.getName();
     FragmentHomeBinding binding;
     public static List<Banner> banners;
     public static List<String> items;
-    ImageView view;
-
-    public static FragmentHome newInstance() {
-        
-        Bundle args = new Bundle();
-        
-        FragmentHome fragment = new FragmentHome();
-        fragment.setArguments(args);
-        return fragment;
-    }
+    MainActivity mainActivity;
 
     @Nullable
     @Override
@@ -60,13 +78,12 @@ public class FragmentHome extends Fragment {
         });
 
         banners = new ArrayList<>();
-        banners.add(new Banner("https://www.google.com/url?sa=i&url=https%3A%2F%2Fbranding360.vn%2F2020%2F08%2F10%2Fthu-loi-nhuan-kinh-ngac-tu-viec-su-dung-banner-quang-cao-branding360%2F&psig=AOvVaw0sjr1b_HCfgxnvvHS6f_j0&ust=1648006757943000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLDRxN3l2PYCFQAAAAAdAAAAABAD"));
-        banners.add(new Banner("https://www.google.com/url?sa=i&url=https%3A%2F%2Fyouthvietnam.vn%2Fthiet-ke-banner%2F&psig=AOvVaw0sjr1b_HCfgxnvvHS6f_j0&ust=1648006757943000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLDRxN3l2PYCFQAAAAAdAAAAABAJ"));
-        banners.add(new Banner("https://www.google.com/url?sa=i&url=https%3A%2F%2Fbizfly.vn%2Ftechblog%2Fbanner-la-gi.html&psig=AOvVaw0sjr1b_HCfgxnvvHS6f_j0&ust=1648006757943000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLDRxN3l2PYCFQAAAAAdAAAAABAO"));
+        banners.add(new Banner("https://2.pik.vn/20212e7f8a86-9236-40d7-8410-b774006968c2.png"));
+        banners.add(new Banner("https://2.pik.vn/202121ec8781-f5f4-42af-b462-cf388d4257d2.png"));
+        banners.add(new Banner("https://2.pik.vn/20214eafd0f3-9bf4-4506-98f9-a7649ce17a25.png"));
+        banners.add(new Banner("https://2.pik.vn/20218a30c666-09ae-492f-a6da-9b9c4a3baad8.png"));
 
-        // init ImageView
-        view = new ImageView(getContext());
-        view.setScaleType(ImageView.ScaleType.FIT_XY);
+
 
         setFlipper();
 
@@ -86,10 +103,13 @@ public class FragmentHome extends Fragment {
         binding.rclHome2.setLayoutManager(new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false));
         binding.rclHome2.setAdapter(new AdapterItem(items, R.layout.item_rcl_doc));
 
+        mainActivity = (MainActivity) getActivity();
+//        mainActivity.onFragmentSelected(0, this);
+
         return binding.getRoot();
     }
 
-//    public void getAPI(){
+    //    public void getAPI(){
 //        Call<List<Banner>> callBanner = APIClient.create().onGetBanners();
 //        callBanner.enqueue(new Callback<List<Banner>>() {
 //            @Override
@@ -131,11 +151,16 @@ public class FragmentHome extends Fragment {
     }
 
     void setFlipper(){
+        // init ImageView
+
+
         for(Banner i : banners){
-            // call removeView() on the child's parent first
-            if(view.getParent() != null){
-                ((ViewGroup) view.getParent()).removeView(view);
-            }
+            ImageView view = new ImageView(getContext());
+            view.setScaleType(ImageView.ScaleType.FIT_XY);
+//            // call removeView() on the child's parent first
+//            if(view.getParent() != null){
+//                ((ViewGroup) view.getParent()).removeView(view);
+//            }
 
             // load image from a link
             Picasso.get().load(i.getImg()).into(view);
@@ -176,5 +201,13 @@ public class FragmentHome extends Fragment {
         items.add("8");
         items.add("9");
         items.add("10");
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(!hidden){
+            mainActivity.onFragmentSelected(0, TAG);
+        }
     }
 }

@@ -5,6 +5,7 @@ import static com.example.exprj.home.FragmentHome.items;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.exprj.AdapterItem;
+import com.example.exprj.MainActivity;
 import com.example.exprj.R;
 import com.example.exprj.databinding.FragmentGameBinding;
 
@@ -26,9 +28,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentGame extends Fragment {
-
+    public static final String TAG = FragmentGame.class.getName();
     FragmentGameBinding binding;
     static List<String> menu;
+    MainActivity mainActivity;
 
     //auto viewpager
     private Handler handler;
@@ -47,15 +50,6 @@ public class FragmentGame extends Fragment {
             handler.postDelayed(this, timeDelay);
         }
     };
-
-    public static FragmentGame newInstance() {
-        
-        Bundle args = new Bundle();
-
-        FragmentGame fragment = new FragmentGame();
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Nullable
     @Override
@@ -96,6 +90,7 @@ public class FragmentGame extends Fragment {
         binding.rclGame.setLayoutManager(new GridLayoutManager(getContext(), 3, RecyclerView.VERTICAL, false));
         binding.rclGame.setAdapter(new AdapterItem(items, R.layout.item_rcl_doc));
 
+        mainActivity = (MainActivity) getActivity();
 
         return binding.getRoot();
     }
@@ -120,5 +115,13 @@ public class FragmentGame extends Fragment {
         menu.add("Game ABC");
         menu.add("Game XYZ");
         menu.add("...");
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(!hidden){
+            mainActivity.onFragmentSelected(1, TAG);
+        }
     }
 }

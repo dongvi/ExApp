@@ -1,6 +1,7 @@
 package com.example.exprj.person;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,23 +17,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.exprj.AdapterItem;
+import com.example.exprj.MainActivity;
 import com.example.exprj.R;
 import com.example.exprj.databinding.FragmentPersonBinding;
+import com.example.exprj.game.FragmentGame;
 
 import static com.example.exprj.home.FragmentHome.items;
 
 public class FragmentPerson extends Fragment {
+    public static final String TAG = FragmentPerson.class.getName();
     FragmentPersonBinding binding;
+    MainActivity mainActivity;
 
-    public static FragmentPerson newInstance() {
-        
-        Bundle args = new Bundle();
-        
-        FragmentPerson fragment = new FragmentPerson();
-        fragment.setArguments(args);
-        return fragment;
-    }
-    
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,6 +45,16 @@ public class FragmentPerson extends Fragment {
         // set animation for imageView
         binding.imgPs.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.flicker));
 
+        mainActivity = (MainActivity) getActivity();
+
         return binding.getRoot();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(!hidden){
+            mainActivity.onFragmentSelected(3, TAG);
+        }
     }
 }
